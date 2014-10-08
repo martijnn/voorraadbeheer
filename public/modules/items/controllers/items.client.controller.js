@@ -9,7 +9,8 @@ angular.module('items').controller('ItemsController', ['$scope', '$stateParams',
 		$scope.create = function() {
 			// Create new Item object
 			var item = new Items ({
-				name: this.name
+				name: this.name,
+				amount: this.amount
 			});
 
 			// Redirect after save
@@ -18,6 +19,7 @@ angular.module('items').controller('ItemsController', ['$scope', '$stateParams',
 
 				// Clear form fields
 				$scope.name = '';
+				$scope.amount = '';
 			}, function(errorResponse) {
 				$scope.error = errorResponse.data.message;
 			});
