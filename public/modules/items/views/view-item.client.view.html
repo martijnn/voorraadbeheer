@@ -1,8 +1,11 @@
 <section data-ng-controller="ItemsController" data-ng-init="findOne()">
 	<div class="page-header">
 		<h1 data-ng-bind="item.name"></h1>
-		<h2 >Aantal: {{item.amount}}</h2>
 	</div>
+
+			<h3>Aantal: {{ item.amount }}</h3>
+			<h3>Gewenste hoeveelheid: {{ item.amountDesired }}</h3>
+
 	<div class="pull-right" data-ng-show="authentication.user._id == item.user._id">
 		<a class="btn btn-primary" href="/#!/items/{{item._id}}/edit">
 			<i class="glyphicon glyphicon-edit"></i>

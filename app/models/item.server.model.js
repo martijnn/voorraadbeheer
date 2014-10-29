@@ -20,6 +20,11 @@ var ItemSchema = new Schema({
 		type: String,
 		default:'0',
 		trim: true
+	},	
+	amountDesired: {
+		type: String,
+		default:'0',
+		trim: true
 	},
 	created: {
 		type: Date,
