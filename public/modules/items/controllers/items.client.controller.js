@@ -1,9 +1,34 @@
 'use strict';
 
 // Items controller
-angular.module('items').controller('ItemsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Items',
-	function($scope, $stateParams, $location, Authentication, Items ) {
+angular.module('items').controller('ItemsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Items', 'ngTableParams',
+	function($scope, $stateParams, $location, Authentication, Items, ngTableParams ) {
 		$scope.authentication = Authentication;
+
+		//AJAX Data loading t.b.v. ngTable
+
+		var params = {
+	        page: 1,            // show first page
+	        count: 10,          // count per page
+	        filter: {},
+		};
+
+		var settings = {
+	        total: 0,           // length of data
+	        counts: [],
+	        getData: function($defer, params) {
+	            // ajax request to api
+	            Items.get(params.url(), function(response) {
+	            	params.total(response.total);
+	            	$defer.resolve(response.results);
+	            	var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
+	            	$scope.items = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
+	            	$defer.resolve($scope.items);
+	            });
+	        }			
+		};
+
+		$scope.tableParams = new ngTableParams(params, settings);
 
 		// Create new Item
 		$scope.create = function() {

@@ -72,6 +72,7 @@ exports.delete = function(req, res) {
 /**
  * List of Items
  */
+/* OUDE LIST
 exports.list = function(req, res) { Item.find().sort('-created').populate('user', 'displayName').exec(function(err, items) {
 		if (err) {
 			return res.status(400).send({
@@ -82,6 +83,47 @@ exports.list = function(req, res) { Item.find().sort('-created').populate('user'
 		}
 	});
 };
+*/
+
+exports.list = function(req, res) { 
+
+	var count = req.query.count || 5;
+	var page = req.query.page || 1;
+
+	var filter = {
+		filters : {
+			mandatory: {
+				contains: req.query.filter
+			}
+		}
+	};
+
+	var pagination = {
+		start: (page - 1) * count,
+		count: count
+	};
+
+	var sort = {
+		sort : {
+			desc: 'created'
+		}
+	};
+
+	Item
+		.find()
+		.filter(filter)
+		.order(sort)
+		.page(pagination, function(err, items){
+			if (err) {
+				return res.status(400).send({
+					message: errorHandler.getErrorMessage(err)
+				});
+			} else {
+				res.jsonp(items);
+			}
+		});
+};
+
 
 /**
  * Item middleware
