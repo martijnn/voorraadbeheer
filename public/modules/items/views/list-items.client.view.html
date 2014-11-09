@@ -72,9 +72,9 @@
 
       <tr ng-repeat="item in $data">
         <td data-title="'# Artikel'"> <!-- filter="{ 'name': 'text' }" -->
-          <a data-ng-href="#!/items/{{item._id}}">{{item.name}}</a>
+          <a data-ng-href="#!/items/{{item._id}}" editable-text="item.name" onaftersave="updateItem()">{{item.name}}</a>
         </td>
-        <td data-title="'Voorraad'">
+        <td data-title="'Voorraad'" editable-text="item.amount">
           {{item.amount}}
         </td>
         <td data-title="'Gewenste hoeveelheid'">

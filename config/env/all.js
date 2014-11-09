@@ -15,7 +15,8 @@ module.exports = {
 			css: [
 				'public/lib/bootstrap/dist/css/bootstrap.css',
 				'public/lib/bootstrap/dist/css/bootstrap-theme.css',
-				'public/lib/ng-table/ng-table.min.css'
+				'public/lib/ng-table/ng-table.min.css',
+				'public/lib/angular-xeditable/dist/css/xeditable.css'
 			],
 			js: [
 				'public/lib/angular/angular.js',
@@ -27,7 +28,8 @@ module.exports = {
 				'public/lib/angular-ui-router/release/angular-ui-router.js',
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
-				'public/lib/ng-table/ng-table.min.js'
+				'public/lib/ng-table/ng-table.min.js',
+				'public/lib/angular-xeditable/dist/js/xeditable.min.js'
 			]
 		},
 		css: [

@@ -2,7 +2,7 @@
 
 // Items controller
 angular.module('items').controller('ItemsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Items', 'ngTableParams',
-	function($scope, $stateParams, $location, Authentication, Items, ngTableParams ) {
+	function($scope, $stateParams, $location, Authentication, Items, ngTableParams, $http ) {
 		$scope.authentication = Authentication;
 
 		//AJAX Data loading t.b.v. ngTable
@@ -21,9 +21,6 @@ angular.module('items').controller('ItemsController', ['$scope', '$stateParams',
 	            Items.get(params.url(), function(response) {
 	            	params.total(response.total);
 	            	$defer.resolve(response.results);
-	            	var orderedData = params.filter() ? $filter('filter')(data, params.filter()) : data;
-	            	$scope.items = orderedData.slice((params.page() - 1) * params.count(), params.page() * params.count());
-	            	$defer.resolve($scope.items);
 	            });
 	        }			
 		};
@@ -67,6 +64,14 @@ angular.module('items').controller('ItemsController', ['$scope', '$stateParams',
 				});
 			}
 		};
+
+//inline table update
+  $scope.updateItem = function() {
+  	var item = {
+      name: this.name
+    };
+    return $http.post('items/' + $scope.item._id, $scope.item);
+  };  
 
 		// Update existing Item
 		$scope.update = function() {
