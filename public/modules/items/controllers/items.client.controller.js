@@ -2,7 +2,7 @@
 
 // Items controller
 angular.module('items').controller('ItemsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Items', 'ngTableParams',
-	function($scope, $stateParams, $location, Authentication, Items, ngTableParams, $http ) {
+	function($scope, $stateParams, $location, Authentication, Items, NgTableParams, $http ) {
 		$scope.authentication = Authentication;
 
 		//AJAX Data loading t.b.v. ngTable
@@ -25,7 +25,7 @@ angular.module('items').controller('ItemsController', ['$scope', '$stateParams',
 	        }			
 		};
 
-		$scope.tableParams = new ngTableParams(params, settings);
+		$scope.tableParams = new NgTableParams(params, settings);
 
 		// Create new Item
 		$scope.create = function() {

@@ -29,7 +29,8 @@ module.exports = {
 				'public/lib/angular-ui-utils/ui-utils.js',
 				'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
 				'public/lib/ng-table/ng-table.min.js',
-				'public/lib/angular-xeditable/dist/js/xeditable.min.js'
+				'public/lib/angular-xeditable/dist/js/xeditable.min.js',
+				'public/lib/quaggaJS/dist/quagga.js'
 			]
 		},
 		css: [
